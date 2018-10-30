@@ -1,5 +1,7 @@
 import Axios from "axios";
 
+var apiBaseUrl = 'tähän api url';
+
 var dummytasot = [
   {
     kayttajataso_id: 0,
@@ -96,6 +98,26 @@ export function HaeViestitLangalta(lanka_id, callback) {
     }
   ];
   callback(data);
+}
+
+export function Kirjaudu(callback) {
+    // token-logiikka puuttuu
+    var kirjautumistieto={
+        "nimimerkki":this.state.nimimerkki,
+        "salasana":this.state.salasana
+        }
+    Axios.post(apiBaseUrl+'kirjautuminen', kirjautumistieto)
+    .then(function (response) {
+        if(response.data.code == 200) {
+            console.log("Kirjautuminen onnistui");
+        } 
+        else if(response.data.code == 204) {
+            console.log("Salasana ja käyttäjätunnus eivät täsmää");
+        }
+        else {
+            console.log("Käyttäjää ei löydy");
+        }
+    })
 }
 
 export default function() {}

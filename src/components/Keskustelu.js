@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { HaeAlueet } from "../apiClient";
 
+
 function Alue(props) {
   let alue = props.alue;
   return <li>Tekstiä</li>;
@@ -18,6 +19,7 @@ class Keskustelu extends Component {
     return (
       <div>
         <ul>{alueet}</ul>
+       
       </div>
     );
   }
