@@ -15,7 +15,7 @@ class Keskustelu extends Component {
     });
   }
   render() {
-    let alueet = this.state.alueet.map(alue => <Alue alue={alue} />);
+    let alueet = this.state.alueet.map(alue => <Alue alue={alue} key={alue.alue_id} />);
     return (
       <div>
         <ul>{alueet}</ul>

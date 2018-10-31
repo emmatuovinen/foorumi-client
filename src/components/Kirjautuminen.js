@@ -3,7 +3,7 @@ import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import AppBar from "material-ui/AppBar";
 import RaisedButton from "material-ui/RaisedButton";
 import TextField from "material-ui/TextField";
-import {Kirjaudu} from '../apiClient';
+import { Kirjaudu } from "../apiClient";
 
 class Kirjautuminen extends Component {
   constructor(props) {
@@ -12,8 +12,14 @@ class Kirjautuminen extends Component {
   }
 
   handleClick = event => {
-    console.log(this.state);
-    this.props.Kirjaudu(this.state);
+    Kirjaudu(this.state, response => {
+      console.log(response);
+      if (typeof response.kayttaja_id !== "undefined") {
+          //Kirjautuminen onnistui
+      } else {
+          //kirjautuminen epäonnistui
+      }
+    });
   };
 
   render() {

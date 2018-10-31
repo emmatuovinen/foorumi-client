@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import Keskustelu from "./components/Keskustelu";
 import Kirjautuminen from "./components/Kirjautuminen";
-import Rekisteröinti from "./components/Rekisteröinti";
+import Rekisterointi from "./components/Rekisterointi";
 
 var käyttäjä = {
   kayttaja_id: 0,
@@ -22,7 +22,7 @@ class App extends Component {
       <div>
         <Keskustelu kirjautunut = {käyttäjä} />
         <Kirjautuminen />
-        <Rekisteröinti />
+        <Rekisterointi />
       </div>
     );
   }

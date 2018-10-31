@@ -5,7 +5,7 @@ import RaisedButton from "material-ui/RaisedButton";
 import TextField from "material-ui/TextField";
 import axios from "axios";
 
-class Rekisteröinti extends Component {
+class Rekisterointi extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -71,4 +71,4 @@ const style = {
   margin: 15
 };
 
-export default Rekisteröinti;
+export default Rekisterointi;

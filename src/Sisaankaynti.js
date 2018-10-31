@@ -4,7 +4,7 @@ import {Kirjaudu} from '../apiClient';
 
 //lisää tänne
 
-class Sisäänkäynti extends Component {
+class Sisaankaynti extends Component {
     render() {
         return (
             <div>
@@ -14,4 +14,4 @@ class Sisäänkäynti extends Component {
     }
 }
 
-export default Sisäänkäynti;
+export default Sisaankaynti;
