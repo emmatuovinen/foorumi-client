@@ -122,6 +122,7 @@ export function LisaaKayttaja(kayttaja, callback) {
         "kuvaus": kayttaja.kuvaus
     }
     console.log(uusiKayttaja);
+    
 }
 
 export default function() {}

@@ -6,7 +6,6 @@ import TextField from "material-ui/TextField";
 import axios from "axios";
 import { LisaaKayttaja } from "../apiClient";
 
-
 class Rekisterointi extends Component {
   constructor(props) {
     super(props);
@@ -15,15 +14,15 @@ class Rekisterointi extends Component {
       email: "",
       kuvaus: "",
       salasana: ""
-    };  
+    };
   }
 
   handleClick = luoKayttaja => {
     LisaaKayttaja(luoKayttaja, response => {
       console.log(response);
-    })
-  }
-  
+    });
+  };
+
   render() {
     return (
       <div>
@@ -42,8 +41,7 @@ class Rekisterointi extends Component {
               hintText="Syötä email"
               type="email"
               floatingLabelText="Email"
-              onChange={(event, uusiArvo) =>
-                this.setState({ email: uusiArvo })}
+              onChange={(event, uusiArvo) => this.setState({ email: uusiArvo })}
             />
             <br />
             <TextField
