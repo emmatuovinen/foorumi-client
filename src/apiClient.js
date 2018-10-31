@@ -100,18 +100,32 @@ export function HaeViestitLangalta(lanka_id, callback) {
 }
 
 export function Kirjaudu(tiedot, callback) {
-    // token-logiikka puuttuu
     var kirjautumistieto={
-        "nimimerkki":tiedot.nimimerkki,
-        "salasana":tiedot.salasana
+        "usr":tiedot.nimimerkki,
+        "pwd":tiedot.salasana
         }
     console.log(kirjautumistieto);
-    if (tiedot.nimimerkki == "testi" && tiedot.salasana == "testi") {
-        callback(dummykayttajat[0]);
-    } 
-    else {
-        callback(false);
-    }
+
+    Axios.post("/api/login", kirjautumistieto).then(response => {
+        
+        console.log(response);
+        if(response.status === 200) {
+            //kirjautuminen onnistui
+            localStorage.jwt = response.data.jwt;
+            callback(response.data);
+        } 
+
+    }).catch(error => {
+        setTimeout(e => {callback(false)}, 5000);
+        // callback(false);
+    })
+
+    // if (tiedot.nimimerkki == "testi" && tiedot.salasana == "testi") {
+    //     callback(dummykayttajat[0]);
+    // } 
+    // else {
+    //     callback(false);
+    // }
     
 }
 
@@ -119,9 +133,10 @@ export function LisaaKayttaja(kayttaja, callback) {
     var uusiKayttaja= {
         "nimimerkki":kayttaja.nimimerkki,
         "email": kayttaja.email,
-        "kuvaus": kayttaja.kuvaus
+        "pwd": kayttaja.salasana
     }
     console.log(uusiKayttaja);
+    Axios.post("/api/register", uusiKayttaja).then(response => {console.log(response)});
     
 }
 
