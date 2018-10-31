@@ -1,6 +1,5 @@
 import Axios from "axios";
 
-var apiBaseUrl = 'tähän api url';
 
 var dummytasot = [
   {
@@ -113,18 +112,16 @@ export function Kirjaudu(tiedot, callback) {
     else {
         callback(false);
     }
-    // Axios.post(apiBaseUrl+'kirjautuminen', kirjautumistieto)
-    // .then(function (response) {
-    //     if(response.data.code == 200) {
-    //         console.log("Kirjautuminen onnistui");
-    //     } 
-    //     else if(response.data.code == 204) {
-    //         console.log("Salasana ja käyttäjätunnus eivät täsmää");
-    //     }
-    //     else {
-    //         console.log("Käyttäjää ei löydy");
-    //     }
-    // })
+    
+}
+
+export function LisaaKayttaja(kayttaja, callback) {
+    var uusiKayttaja= {
+        "nimimerkki":kayttaja.nimimerkki,
+        "email": kayttaja.email,
+        "kuvaus": kayttaja.kuvaus
+    }
+    console.log(uusiKayttaja);
 }
 
 export default function() {}

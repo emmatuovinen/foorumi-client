@@ -4,16 +4,24 @@ import AppBar from "material-ui/AppBar";
 import RaisedButton from "material-ui/RaisedButton";
 import TextField from "material-ui/TextField";
 import axios from "axios";
+import { LisaaKayttaja } from "../apiClient";
+
 
 class Rekisterointi extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      kayttajatunnus: "",
+      nimimerkki: "",
       email: "",
       kuvaus: "",
       salasana: ""
-    };
+    };  
+  }
+
+  handleClick = luoKayttaja => {
+    LisaaKayttaja(luoKayttaja, response => {
+      console.log(response);
+    })
   }
   
   render() {
@@ -23,10 +31,10 @@ class Rekisterointi extends Component {
           <div>
             <AppBar title="Rekisteröityminen" />
             <TextField
-              hintText="Syötä käyttäjätunnus"
-              floatingLabelText="Käyttäjätunnus"
+              hintText="Syötä nimimerkki"
+              floatingLabelText="Nimimerkki"
               onChange={(event, uusiArvo) =>
-                this.setState({ kayttajatunnus: uusiArvo })
+                this.setState({ nimimerkki: uusiArvo })
               }
             />
             <br />
@@ -59,7 +67,7 @@ class Rekisterointi extends Component {
               label="Rekisteröidy"
               primary={true}
               style={style}
-              onClick={event => this.handleClick(event)}
+              onClick={event => this.handleClick(this.state)}
             />
           </div>
         </MuiThemeProvider>
