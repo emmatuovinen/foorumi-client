@@ -3,7 +3,6 @@ import "./App.css";
 import Keskustelu from "./components/Keskustelu";
 import Kirjautuminen from "./components/Kirjautuminen";
 import Rekisterointi from "./components/Rekisterointi";
-import Sisaankaynti from './components/Sisaankaynti';
 
 import {
   BrowserRouter as Router,
@@ -11,6 +10,7 @@ import {
   Route,
   NavLink
 } from "react-router-dom";
+import Aluehallinta from "./components/admin/Aluehallinta";
 
 
 var käyttäjä = {
@@ -32,11 +32,11 @@ class App extends Component {
         <div>
           <Navigation />
           
-          <Keskustelu kirjautunut={käyttäjä} />
-          <Route exact path="/" component={Sisaankaynti} />
+          <Route exact path="/" component={Keskustelu} />
           <Route path="/kirjaudu" component={Kirjautuminen} />
           <Route path="/rekisteroi" component={Rekisterointi} />
-          
+          <Route path="/admin" component={Aluehallinta} />
+
         </div>
       </Router>
     );
@@ -49,7 +49,9 @@ class Navigation extends Component {
       <div>
         <NavLink to="/" exact activeClassName="active">Sisäänkäynti</NavLink>&ensp;
         <NavLink to="/kirjaudu" activeClassName="active">Kirjautumissivu</NavLink>&ensp;
-        <NavLink to="/rekisteroi" activeClassName="active">Rekisteröityminen</NavLink>
+        <NavLink to="/rekisteroi" activeClassName="active">Rekisteröityminen</NavLink>&ensp;
+        <NavLink to="/admin" activeClassName="active">Aluehallinta</NavLink>
+
         
         
       </div>

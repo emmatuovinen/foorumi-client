@@ -1,12 +1,6 @@
 import React, { Component } from "react";
 import { HaeAlueet } from "../apiClient";
 
-
-function Alue(props) {
-  let alue = props.alue;
-  return <li>Tekstiä</li>;
-}
-
 class Keskustelu extends Component {
   state = { alueet: [] };
   componentDidMount() {
@@ -15,12 +9,13 @@ class Keskustelu extends Component {
     });
   }
   render() {
-    let alueet = this.state.alueet.map(alue => <Alue alue={alue} key={alue.alue_id} />);
+    let alueet = this.state.alueet.map(alue => (
+      <li key={alue.alue_id}> {alue.otsikko}</li>
+    ));
     return (
       <div>
-          
+        <h1>Tervetuloa Foorumin etusivulle</h1>
         <ul>{alueet}</ul>
-       
       </div>
     );
   }

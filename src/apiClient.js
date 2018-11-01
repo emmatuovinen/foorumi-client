@@ -1,6 +1,5 @@
 import Axios from "axios";
 
-
 var dummytasot = [
   {
     kayttajataso_id: 0,
@@ -32,51 +31,59 @@ var dummykayttajat = [
 ];
 
 export function HaeAlueet(callback) {
-  let data = [
-    {
-      alue_id: 0,
-      otsikko: "käsityöt ja aseet",
-      kuvaus: "täällä tehdään käsitöitä ja aseita",
-      rajoitettu: false,
-      lankoja: 5,
-      viestejä: 50,
-      lukemattomia: true
-    },
-    {
-      alue_id: 1,
-      otsikko: "lapset ja aseet",
-      kuvaus: "täällä lapset tekevät aseita",
-      rajoitettu: true,
-      lankoja: 5,
-      viestejä: 50,
-      lukemattomia: false
-    }
-  ];
-  callback(data);
+  //   let data = [
+  //     {
+  //       alue_id: 0,
+  //       otsikko: "käsityöt ja aseet",
+  //       kuvaus: "täällä tehdään käsitöitä ja aseita",
+  //       rajoitettu: false,
+  //       lankoja: 5,
+  //       viestejä: 50,
+  //       lukemattomia: true
+  //     },
+  //     {
+  //       alue_id: 1,
+  //       otsikko: "lapset ja aseet",
+  //       kuvaus: "täällä lapset tekevät aseita",
+  //       rajoitettu: true,
+  //       lankoja: 5,
+  //       viestejä: 50,
+  //       lukemattomia: false
+  //     }
+  //   ];
+  //   callback(data);
+
+  Axios.get("/api/alueet").then(response => {
+    callback(response.data);
+  });
 }
 
 export function HaeLangatAlueelta(alue_id, callback) {
-  let data = [
-    {
-      lanka_id: 0,
-      kayttaja: dummykayttajat[0],
-      aika: Date.now(),
-      otsikko: "Ampumaradalle?",
-      lukittu: false,
-      kiinnitetty: true,
-      vastauksia: 2
-    },
-    {
-      lanka_id: 1,
-      kayttaja: dummykayttajat[1],
-      aika: Date.now(),
-      otsikko: "Nypläämään?",
-      lukittu: true,
-      kiinnitetty: false,
-      vastauksia: 3
-    }
-  ];
-  callback(data);
+  //   let data = [
+  //     {
+  //       lanka_id: 0,
+  //       kayttaja: dummykayttajat[0],
+  //       aika: Date.now(),
+  //       otsikko: "Ampumaradalle?",
+  //       lukittu: false,
+  //       kiinnitetty: true,
+  //       vastauksia: 2
+  //     },
+  //     {
+  //       lanka_id: 1,
+  //       kayttaja: dummykayttajat[1],
+  //       aika: Date.now(),
+  //       otsikko: "Nypläämään?",
+  //       lukittu: true,
+  //       kiinnitetty: false,
+  //       vastauksia: 3
+  //     }
+  //   ];
+
+  Axios.get("/api/alueet/" + alue_id).then(response => {
+    callback(response.data);
+  });
+  // viittaus callbackiin data.alue(yksittäinen objekti) tai data.langat(array)
 }
 
 export function HaeViestitLangalta(lanka_id, callback) {
@@ -100,44 +107,55 @@ export function HaeViestitLangalta(lanka_id, callback) {
 }
 
 export function Kirjaudu(tiedot, callback) {
-    var kirjautumistieto={
-        "usr":tiedot.nimimerkki,
-        "pwd":tiedot.salasana
-        }
-    console.log(kirjautumistieto);
+  var kirjautumistieto = {
+    usr: tiedot.nimimerkki,
+    pwd: tiedot.salasana
+  };
+  console.log(kirjautumistieto);
 
-    Axios.post("/api/login", kirjautumistieto).then(response => {
-        
-        console.log(response);
-        if(response.status === 200) {
-            //kirjautuminen onnistui
-            localStorage.jwt = response.data.jwt;
-            callback(response.data);
-        } 
-
-    }).catch(error => {
-        setTimeout(e => {callback(false)}, 5000);
-        // callback(false);
+  Axios.post("/api/login", kirjautumistieto)
+    .then(response => {
+      console.log(response);
+      if (response.status === 200) {
+        //kirjautuminen onnistui
+        localStorage.jwt = response.data.jwt;
+        callback(response.data);
+      }
     })
+    .catch(error => {
+      setTimeout(e => {
+        callback(false);
+      }, 5000);
+      // callback(false);
+    });
 
-    // if (tiedot.nimimerkki == "testi" && tiedot.salasana == "testi") {
-    //     callback(dummykayttajat[0]);
-    // } 
-    // else {
-    //     callback(false);
-    // }
-    
+  // if (tiedot.nimimerkki == "testi" && tiedot.salasana == "testi") {
+  //     callback(dummykayttajat[0]);
+  // }
+  // else {
+  //     callback(false);
+  // }
 }
 
 export function LisaaKayttaja(kayttaja, callback) {
-    var uusiKayttaja= {
-        "nimimerkki":kayttaja.nimimerkki,
-        "email": kayttaja.email,
-        "pwd": kayttaja.salasana
-    }
-    console.log(uusiKayttaja);
-    Axios.post("/api/register", uusiKayttaja).then(response => {console.log(response)});
-    
+  var uusiKayttaja = {
+    nimimerkki: kayttaja.nimimerkki,
+    email: kayttaja.email,
+    pwd: kayttaja.salasana
+  };
+  console.log(uusiKayttaja);
+  Axios.post("/api/register", uusiKayttaja).then(response => {
+    console.log(response);
+  });
+}
+
+
+export function LuoAlue(alue, callback) {
+    Axios.post("/api/alueet", alue)
+        .then(response => {
+            console.dir(response);
+            callback(response.status);
+        });
 }
 
 export default function() {}
