@@ -16,7 +16,11 @@ class Alue extends Component {
     })
   }
 
-  Paivita = () => { this.setState(this.state)};
+  Paivita = () => {HaeLangatAlueelta(this.props.match.params.id, response => {
+    var langat = response.langat;
+    var alue = response.alue;
+    this.setState({langat : langat, alue: alue});
+  }); this.setState(this.state)};
 
   render() {
     var langat = this.state.langat.map(lanka => 
