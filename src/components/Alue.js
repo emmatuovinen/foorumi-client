@@ -24,13 +24,13 @@ class Alue extends Component {
 
   render() {
     var langat = this.state.langat.map(lanka => 
-      <li key={lanka.lanka_id}>
+      <li className="list-group-item" key={lanka.lanka_id}>
       <Link to={"/keskustelu/lanka/" + lanka.lanka_id}>{lanka.otsikko}</Link>
       </li>)
     return (
       <div>
          {/* <p>{this.props.match.params.id}</p> */}
-         <ul>
+         <ul className="list-group">
            {langat}
            <UusiLanka alueId = {this.state.alue.alue_id} paivita = {this.Paivita}/>
          </ul>

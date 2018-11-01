@@ -16,14 +16,14 @@ class Keskustelu extends Component {
   }
   render() {
     let alueet = this.state.alueet.map(alue => (
-      <li key={alue.alue_id}> 
+      <li className="list-group-item" key={alue.alue_id}> 
       <Link to={"/keskustelu/alue/" + alue.alue_id}>{alue.otsikko}</Link>
       </li>
     ));
     return (
       <div>
-        <h1 class="otsikko">Tervetuloa foorumin etusivulle</h1>
-        <ul>{alueet}</ul>
+        <h1 className="otsikko">Tervetuloa foorumin etusivulle</h1>
+        <ul className="list-group">{alueet}</ul>
       </div>
     );
   }

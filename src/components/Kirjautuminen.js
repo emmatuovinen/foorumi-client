@@ -14,7 +14,6 @@ class Kirjautuminen extends Component {
 
   handleClick = (kayttaja, callback) => {
     Kirjaudu(kayttaja, response => {
-      console.log(response);
       if (typeof response.kayttaja_id !== "undefined") {
         //Kirjautuminen onnistui
         this.setState({ kayttaja: response });

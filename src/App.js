@@ -12,24 +12,11 @@ import {
 } from "react-router-dom";
 import Aluehallinta from "./components/admin/Aluehallinta";
 
-
-var käyttäjä = {
-  kayttaja_id: 0,
-  kayttajataso: {
-    kayttajataso_id: 0,
-    nimi: "admin"
-  },
-  email: "pekka@asekauppias.fi",
-  nimimerkki: "Pekka",
-  kuvaus: "Olen Pekka. Intohimoinen aseharrastaja ja lasten ystävä.",
-  aktiivisuus: Date.now()
-};
-
 class App extends Component {
   render() {
     return (
       <Router>
-        <div>
+        <div className="content">
           <Navigation />
           
           <Route exact path="/" component={Keskustelu} />
@@ -49,7 +36,7 @@ class Navigation extends Component {
   render() {
     return (
       <div>
-        <nav class="navtyyli">
+        <nav className="navtyyli">
         <NavLink to="/" exact activeClassName="active">Keskustelu</NavLink>&ensp;
         <NavLink to="/kirjaudu" activeClassName="active">Kirjautumissivu</NavLink>&ensp;
         <NavLink to="/rekisteroi" activeClassName="active">Rekisteröityminen</NavLink>&ensp;
