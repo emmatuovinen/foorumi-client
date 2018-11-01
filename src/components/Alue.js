@@ -7,13 +7,16 @@ import UusiLanka from './UusiLanka';
 
 
 class Alue extends Component {
-  state = {langat:[], alue: {otsikko: ""}}
+  state = {langat:[], alue: {otsikko: "", alue_id: ""}}
   componentDidMount() {
     HaeLangatAlueelta(this.props.match.params.id, response => {
       var langat = response.langat;
-      this.setState({langat : langat});
+      var alue = response.alue;
+      this.setState({langat : langat, alue: alue});
     })
   }
+
+  Paivita = () => { this.setState(this.state)};
 
   render() {
     var langat = this.state.langat.map(lanka => 
@@ -25,7 +28,7 @@ class Alue extends Component {
          {/* <p>{this.props.match.params.id}</p> */}
          <ul>
            {langat}
-           <UusiLanka />
+           <UusiLanka alueId = {this.state.alue.alue_id} paivita = {this.Paivita}/>
          </ul>
       </div>
       

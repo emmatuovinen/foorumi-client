@@ -61,7 +61,8 @@ export function HaeAlueet(callback) {
   //   callback(data);
 
   Axios.get("/api/alueet").then(response => {
-    callback(response.data);
+    localStorage.jwt=response.data.jwt;
+    callback(response.data.data);
   });
 }
 
@@ -88,7 +89,8 @@ export function HaeLangatAlueelta(alue_id, callback) {
   //   ];
 
   Axios.get("/api/alueet/" + alue_id).then(response => {
-    callback(response.data);
+    localStorage.jwt=response.data.jwt;
+    callback(response.data.data);
   });
   // viittaus callbackiin data.alue(yksittäinen objekti) tai data.langat(array)
 }
@@ -112,7 +114,8 @@ export function HaeViestitLangalta(lanka_id, callback) {
   // ];
   // callback(data);
   Axios.get("/api/langat/" + lanka_id).then(response => {
-    callback(response.data);
+    localStorage.jwt=response.data.jwt;
+    callback(response.data.data);
   });
 }
 
@@ -130,7 +133,8 @@ export function Kirjaudu(tiedot, callback) {
         //kirjautuminen onnistui
         localStorage.jwt = response.data.jwt;
         AsetaHeaderi();
-        callback(response.data);
+        localStorage.jwt=response.data.jwt;
+        callback(response.data.data);
       }
     })
     .catch(error => {
@@ -163,13 +167,15 @@ export function LisaaKayttaja(kayttaja, callback) {
 export function LuoAlue(alue, callback) {
   Axios.post("/api/alueet", alue).then(response => {
     console.dir(response);
-    callback(response.status);
+    localStorage.jwt=response.data.jwt;
+    callback(response.status === 201);
   });
 }
 
 export function HaeKayttajatasot(callback) {
   Axios.get("/api/kayttajatasot/").then(response => {
-    callback(response.data);
+    localStorage.jwt=response.data.jwt;
+    callback(response.data.data);
   });
   
 }
@@ -177,14 +183,16 @@ export function HaeKayttajatasot(callback) {
 export function LisääViesti(viesti, callback) {
   Axios.post("/api/viestit", viesti).then(response => {
     console.dir(response);
-    callback(response.status);
+    localStorage.jwt=response.data.jwt;
+    callback(response.status === 201);
   });
 }
 
-export function LisääLanka(lanka, callback) {
-  Axios.post("/api/langat", lanka).then(response => {
+export function LisääLanka(lanka, alue_id, callback) {
+  Axios.post("/api/langat", {otsikko: lanka.otsikko, alue_id: alue_id}).then(response => {
     console.dir(response);
-    callback(response.status);
+    //localStorage.jwt=response.data.jwt;
+    callback(response.status === 201);
   });
 }
 
