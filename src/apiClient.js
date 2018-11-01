@@ -165,10 +165,10 @@ export function LuoAlue(alue, callback) {
 }
 
 export function HaeKayttajatasot(callback) {
-  // Axios.get("/api/kayttajatasot/").then(response => {
-  //   callback(response.data);
-  // });
-  callback(dummytasot);
+  Axios.get("/api/kayttajatasot/").then(response => {
+    callback(response.data);
+  });
+  
 }
 
 export default function() {}

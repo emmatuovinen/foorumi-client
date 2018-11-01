@@ -17,6 +17,7 @@ class Aluehallinta extends Component {
     <div>
         <ul>
         {alueet}
+        
         </ul>
         <Aluelomake />
     </div>

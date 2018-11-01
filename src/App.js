@@ -3,10 +3,10 @@ import "./App.css";
 import Keskustelu from "./components/Keskustelu";
 import Kirjautuminen from "./components/Kirjautuminen";
 import Rekisterointi from "./components/Rekisterointi";
+import Alue from './components/Alue';
 
 import {
   BrowserRouter as Router,
-  Switch,
   Route,
   NavLink
 } from "react-router-dom";
@@ -36,6 +36,8 @@ class App extends Component {
           <Route path="/kirjaudu" component={Kirjautuminen} />
           <Route path="/rekisteroi" component={Rekisterointi} />
           <Route path="/admin" component={Aluehallinta} />
+          <Route path="/keskustelu/alue/:id" component={Alue} />
+
 
         </div>
       </Router>
@@ -51,6 +53,7 @@ class Navigation extends Component {
         <NavLink to="/kirjaudu" activeClassName="active">Kirjautumissivu</NavLink>&ensp;
         <NavLink to="/rekisteroi" activeClassName="active">Rekisteröityminen</NavLink>&ensp;
         <NavLink to="/admin" activeClassName="active">Aluehallinta</NavLink>
+
 
         
         

@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import { HaeAlueet } from "../apiClient";
+import {
+  Link
+} from "react-router-dom";
+
 
 class Keskustelu extends Component {
   state = { alueet: [] };
@@ -10,7 +14,9 @@ class Keskustelu extends Component {
   }
   render() {
     let alueet = this.state.alueet.map(alue => (
-      <li key={alue.alue_id}> {alue.otsikko}</li>
+      <li key={alue.alue_id}> 
+      <Link to={"/keskustelu/alue/" + alue.alue_id}>{alue.otsikko}</Link>
+      </li>
     ));
     return (
       <div>
