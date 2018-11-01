@@ -7,7 +7,7 @@ class Aluehallinta extends Component {
 
   componentDidMount() {
     HaeAlueet(data => {
-      console.dir(data);
+      // console.dir(data);
       this.setState({ alueet: data });
     });
   }

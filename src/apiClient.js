@@ -1,12 +1,19 @@
 import Axios from "axios";
+AsetaHeaderi();
+
+function AsetaHeaderi() {
+  if (typeof localStorage.jwt !== undefined ) {
+  Axios.defaults.headers.common["Authorization"] = "Bearer " + localStorage.jwt;
+}
+}
 
 var dummytasot = [
   {
-    kayttajataso_id: 0,
+    kayttajataso_id: 1,
     nimi: "admin"
   },
   {
-    kayttajataso_id: 1,
+    kayttajataso_id: 2,
     nimi: "kayttaja"
   }
 ];
@@ -119,6 +126,7 @@ export function Kirjaudu(tiedot, callback) {
       if (response.status === 200) {
         //kirjautuminen onnistui
         localStorage.jwt = response.data.jwt;
+        AsetaHeaderi();
         callback(response.data);
       }
     })
@@ -149,13 +157,11 @@ export function LisaaKayttaja(kayttaja, callback) {
   });
 }
 
-
 export function LuoAlue(alue, callback) {
-    Axios.post("/api/alueet", alue)
-        .then(response => {
-            console.dir(response);
-            callback(response.status);
-        });
+  Axios.post("/api/alueet", alue).then(response => {
+    console.dir(response);
+    callback(response.status);
+  });
 }
 
 export function HaeKayttajatasot(callback) {

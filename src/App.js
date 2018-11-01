@@ -47,7 +47,7 @@ class Navigation extends Component {
   render() {
     return (
       <div>
-        <NavLink to="/" exact activeClassName="active">Sisäänkäynti</NavLink>&ensp;
+        <NavLink to="/" exact activeClassName="active">Keskustelu</NavLink>&ensp;
         <NavLink to="/kirjaudu" activeClassName="active">Kirjautumissivu</NavLink>&ensp;
         <NavLink to="/rekisteroi" activeClassName="active">Rekisteröityminen</NavLink>&ensp;
         <NavLink to="/admin" activeClassName="active">Aluehallinta</NavLink>
