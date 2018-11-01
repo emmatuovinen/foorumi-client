@@ -94,23 +94,26 @@ export function HaeLangatAlueelta(alue_id, callback) {
 }
 
 export function HaeViestitLangalta(lanka_id, callback) {
-  let data = [
-    {
-      viesti_id: 0,
-      otsikko: "Ampumaradalle?",
-      viesti: "Seuraa ampumaradalle. Lapsiparkki löytyy.",
-      aika: Date.now(),
-      kayttaja: dummykayttajat[0]
-    },
-    {
-      viesti_id: 1,
-      otsikko: "Re:Ampumaradalle?",
-      viesti: "Tuun laittaa sukkapuikot piippuun.",
-      aika: Date.now(),
-      kayttaja: dummykayttajat[1]
-    }
-  ];
-  callback(data);
+  // let data = [
+  //   {
+  //     viesti_id: 0,
+  //     otsikko: "Ampumaradalle?",
+  //     viesti: "Seuraa ampumaradalle. Lapsiparkki löytyy.",
+  //     aika: Date.now(),
+  //     kayttaja: dummykayttajat[0]
+  //   },
+  //   {
+  //     viesti_id: 1,
+  //     otsikko: "Re:Ampumaradalle?",
+  //     viesti: "Tuun laittaa sukkapuikot piippuun.",
+  //     aika: Date.now(),
+  //     kayttaja: dummykayttajat[1]
+  //   }
+  // ];
+  // callback(data);
+  Axios.get("/api/langat/" + lanka_id).then(response => {
+    callback(response.data);
+  });
 }
 
 export function Kirjaudu(tiedot, callback) {
@@ -169,6 +172,20 @@ export function HaeKayttajatasot(callback) {
     callback(response.data);
   });
   
+}
+
+export function LisääViesti(viesti, callback) {
+  Axios.post("/api/viestit", viesti).then(response => {
+    console.dir(response);
+    callback(response.status);
+  });
+}
+
+export function LisääLanka(lanka, callback) {
+  Axios.post("/api/langat", lanka).then(response => {
+    console.dir(response);
+    callback(response.status);
+  });
 }
 
 export default function() {}

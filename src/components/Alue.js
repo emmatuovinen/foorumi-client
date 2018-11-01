@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import { HaeLangatAlueelta } from "../apiClient";
+import {
+  Link
+} from "react-router-dom";
+import UusiLanka from './UusiLanka';
 
 
 class Alue extends Component {
@@ -13,12 +17,15 @@ class Alue extends Component {
 
   render() {
     var langat = this.state.langat.map(lanka => 
-      <li key={lanka.lanka_id}>{lanka.otsikko}</li>)
+      <li key={lanka.lanka_id}>
+      <Link to={"/keskustelu/lanka/" + lanka.lanka_id}>{lanka.otsikko}</Link>
+      </li>)
     return (
       <div>
          {/* <p>{this.props.match.params.id}</p> */}
          <ul>
            {langat}
+           <UusiLanka />
          </ul>
       </div>
       
