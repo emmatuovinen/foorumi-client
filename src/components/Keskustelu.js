@@ -1,8 +1,10 @@
 import React, { Component } from "react";
+import "../Etusivu.css";
 import { HaeAlueet } from "../apiClient";
 import {
   Link
 } from "react-router-dom";
+
 
 
 class Keskustelu extends Component {
@@ -20,7 +22,7 @@ class Keskustelu extends Component {
     ));
     return (
       <div>
-        <h1>Tervetuloa Foorumin etusivulle</h1>
+        <h1 class="otsikko">Tervetuloa foorumin etusivulle</h1>
         <ul>{alueet}</ul>
       </div>
     );

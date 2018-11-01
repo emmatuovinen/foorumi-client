@@ -5,6 +5,7 @@ import AppBar from "material-ui/AppBar";
 import RaisedButton from "material-ui/RaisedButton";
 import TextField from "material-ui/TextField";
 import Checkbox from "material-ui/Checkbox";
+import "../../AppBar.css";
 
 class Aluelomake extends Component {
   constructor(props) {
@@ -73,7 +74,7 @@ class Aluelomake extends Component {
       <div>
         <MuiThemeProvider>
           <div>
-            <AppBar title="Alueen luominen" />
+            <AppBar title="Alueen luominen" className="tausta" />
             <TextField
               hintText="Syötä alueen otsikko"
               floatingLabelText="Otsikko"
