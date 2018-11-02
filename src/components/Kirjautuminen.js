@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
-import AppBar from "material-ui/AppBar";
 import RaisedButton from "material-ui/RaisedButton";
 import TextField from "material-ui/TextField";
 import { Kirjaudu } from "../apiClient";
@@ -12,22 +10,22 @@ class Kirjautuminen extends Component {
     this.state = { nimimerkki: "", salasana: "", kayttaja: false };
   }
 
-  handleClick = (kayttaja, callback) => {
+  handleClick = (kayttaja, callbackFail) => {
     Kirjaudu(kayttaja, response => {
       if (typeof response.kayttaja_id !== "undefined") {
         //Kirjautuminen onnistui
-        this.setState({ kayttaja: response });
+        // this.setState({ kayttaja: response });
+        this.props.loginOnnistui(response);
       } else {
         //kirjautuminen epäonnistui
-
         this.setState(this.state);
-        callback();
+        callbackFail();
       }
     });
   };
 
   render() {
-    var sisalto = !this.state.kayttaja ? (
+    var sisalto = !this.props.kayttaja ? (
       <Kirjautumislomake handleClick={this.handleClick} />
     ) : (
       <Sisalla kayttaja={this.state.kayttaja} />
@@ -60,9 +58,9 @@ class Kirjautumislomake extends Component {
       ""
     );
     return (
-      <MuiThemeProvider>
-        <div>
-          <AppBar title="Kirjautuminen" />
+        <div className="content sisalto"> 
+          <b>Kirjaudu sisään:</b>
+          <div>
           {virheilmoitus}
           <TextField
             value={this.state.nimimerkki}
@@ -76,6 +74,7 @@ class Kirjautumislomake extends Component {
           <TextField
             value={this.state.salasana}
             hintText="Syötä salasana"
+            type="password"
             floatingLabelText="Salasana"
             onChange={(event, uusiArvo) =>
               this.setState({ salasana: uusiArvo })
@@ -89,8 +88,13 @@ class Kirjautumislomake extends Component {
             style={style}
             onClick={this.handleClick}
           />
+          <RaisedButton
+            disabled={this.state.nappiKäytössä ? false : true}
+            label="Rekisteröidy"
+            style={style}
+            href="rekisteroi"
+          /></div>
         </div>
-      </MuiThemeProvider>
     );
   }
 }

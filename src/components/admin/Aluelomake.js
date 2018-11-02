@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { LuoAlue, HaeKayttajatasot } from "../../apiClient";
-import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
-import AppBar from "material-ui/AppBar";
 import RaisedButton from "material-ui/RaisedButton";
 import TextField from "material-ui/TextField";
 import Checkbox from "material-ui/Checkbox";
@@ -52,11 +50,15 @@ class Aluelomake extends Component {
   };
   render() {
     let tasot = this.state.rajoitettu ? (
-      <ul>
+      <React.Fragment>
+      <div className="kayttajaTasotLista">
+        
+      <ul className="list-group list-group-flush">
         {this.state.tasot.map(taso => (
-          <li key={taso.kayttajataso_id}>
+          <li className="list-group-item" key={taso.kayttajataso_id}>
             {" "}
             <Checkbox
+            
               checked = {taso.valittu}
               disabled = {taso.kayttajataso_id === 1 ? true : false}
               value={taso.kayttajataso_id}
@@ -66,15 +68,16 @@ class Aluelomake extends Component {
           </li>
         ))}
       </ul>
+      </div>
+      <div className="clear"></div>
+      </React.Fragment>
     ) : (
       ""
     );
 
     return (
-      <div>
-        <MuiThemeProvider>
-          <div>
-            <AppBar title="Alueen luominen" className="tausta" />
+      <div className="content sisalto">
+        <h2>Luo uusi alue</h2>
             <TextField
               hintText="Syötä alueen otsikko"
               floatingLabelText="Otsikko"
@@ -103,8 +106,6 @@ class Aluelomake extends Component {
               style={style}
               onClick={event => this.handleClick(this.state)}
             />
-          </div>
-        </MuiThemeProvider>
       </div>
     );
   }

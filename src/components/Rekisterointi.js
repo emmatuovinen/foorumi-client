@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
-import AppBar from "material-ui/AppBar";
 import RaisedButton from "material-ui/RaisedButton";
 import TextField from "material-ui/TextField";
 import { LisaaKayttaja } from "../apiClient";
@@ -24,10 +22,7 @@ class Rekisterointi extends Component {
 
   render() {
     return (
-      <div>
-        <MuiThemeProvider>
           <div>
-            <AppBar title="Rekisteröityminen" />
             <TextField
               hintText="Syötä nimimerkki"
               floatingLabelText="Nimimerkki"
@@ -67,8 +62,6 @@ class Rekisterointi extends Component {
               onClick={event => this.handleClick(this.state)}
             />
           </div>
-        </MuiThemeProvider>
-      </div>
     );
   }
 }

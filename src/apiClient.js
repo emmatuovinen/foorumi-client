@@ -51,10 +51,17 @@ export function Kirjaudu(tiedot, callback) {
     .catch(error => {
       setTimeout(e => {
         callback(false);
-      }, 5000);
+      }, 1000);
       // callback(false);
     });
+}
 
+export function UudelleenKirjaudu(callback){
+  Axios.get("/api/login").then(response => callback(response.data.data));
+}
+
+export function KirjauduUlos(callback){
+  Axios.get("/api/logout").then(response => callback(response.data.data)).catch(error => callback(error.data));
 }
 
 export function LisaaKayttaja(kayttaja, callback) {
@@ -100,6 +107,29 @@ export function LisääLanka(lanka, alue_id, callback) {
       callback(response.status === 201);
     }
   );
+}
+
+export function AikaKuvaus(min) {
+  if(min === null || typeof min === undefined){
+    return "";
+  }
+  if (min < 1) {
+    return "Juuri nyt";
+  }
+  if (min < 60) {
+    return min + " minuuttia";
+  }
+  if (min === 60) {
+    return "1 tunti";
+  }
+  if (min > 60) {
+    let teksti =
+      Math.floor(min / 60) + " tunti" + (Math.floor(min / 60) > 1 ? "a" : "");
+    if (min % 60 !== 0) {
+      teksti += " ja " + (min % 60) + " minuuttia";
+    }
+    return teksti;
+  }
 }
 
 export default function() {}

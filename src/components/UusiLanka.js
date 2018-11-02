@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import TextField from "material-ui/TextField";
 import { LisääLanka } from "../apiClient";
 import RaisedButton from "material-ui/RaisedButton";
-import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 
 class UusiLanka extends Component {
   state = { otsikko: "" };
@@ -19,8 +18,6 @@ class UusiLanka extends Component {
   render() {
     return (
       <div>
-        <MuiThemeProvider>
-          <div>
             <TextField
               hintText="Syötä langan otsikko"
               floatingLabelText="Otsikko"
@@ -34,8 +31,6 @@ class UusiLanka extends Component {
               primary={true}
               onClick={event => this.handleLanka(this.state)}
             />
-          </div>
-        </MuiThemeProvider>
       </div>
     );
   }

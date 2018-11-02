@@ -34,3 +34,113 @@
   color: #666;
 }
 
+li a, a:hover {
+  color: black !important;
+  text-decoration: none !important;
+  
+}
+
+li a:hover h5 {
+  text-decoration: underline;
+}
+
+li:hover {
+    /* color: #fff !important;
+    background-color: #007bff;
+    border-color: #007bff; */
+}
+li:hover a {
+  
+  /* color: #fff !important; */
+}
+
+.sisalto {
+  margin: 2rem !important;
+}
+
+.mainWrapper {
+  margin: 2rem !important;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: 0.25rem;
+}
+
+nav {
+  text-decoration: none;
+  font: 25px/1 Helvetica, Verdana, sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+
+  padding: .75rem 1.25rem;
+  margin: 1rem;
+  box-sizing: border-box;
+  border-radius: .25rem;
+  
+  background-color: rgba(0,0,0,.125);
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+nav a {
+  color: black !important;
+  margin: 2px !important;
+  padding: 5px;
+}
+
+nav a:hover {
+  border-radius: .5rem;
+  margin: 1px !important;
+  color: #fff !important;
+    background-color: #007bff;
+    border: 1px solid #007bff;
+}
+
+.viesti {
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: .25rem;
+  margin: .5rem 0;
+  padding: 1rem;
+}
+.viesti .otsikko {
+  display: block;
+  background-color: rgba(0,0,0,.250);
+  margin: -1rem -1rem .5rem -1rem;
+  padding: .25rem 1rem;
+  text-align: left;
+}
+.viesti p{
+  display: block;
+  margin: 0px;
+}
+
+.viesti > div > span {
+  float: right;
+}
+
+.uusiViestiInput {
+  width: 100% !important;
+  vertical-align: top;
+}
+
+.uusiViestiButton{
+  float: right;
+}
+
+.clear {
+  clear: both;
+}
+
+.kayttajaTasotLista {
+  float: left;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: .5rem;
+  margin-left: 2rem;
+  margin-top: 1rem;
+}
+
+.center button {
+  margin: auto;
+  cursor: pointer;
+}
